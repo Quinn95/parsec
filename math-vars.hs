@@ -95,7 +95,7 @@ parseExpression =  try parseNumber
 parseWriteVariable :: Parsec [Char] Variables ()
 parseWriteVariable = do
     string "let "
-    name <- many (noneOf " ")
+    name <- many letter
     string " = "
     value <- parseExpression
     modifyState $ writeVariable (name, Number (eval value))
